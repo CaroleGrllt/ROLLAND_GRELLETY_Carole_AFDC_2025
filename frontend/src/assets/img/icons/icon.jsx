@@ -1,6 +1,6 @@
 import { ICONS } from "./mapIcon";
 
-export function Icon({ name, className, title,  }) {
+export default function Icon({ name, className, title,  }) {
   const Component = ICONS[name];
   if (!Component) return null;
 

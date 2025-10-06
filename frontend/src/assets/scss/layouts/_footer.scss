@@ -1,0 +1,68 @@
+@use '../utils/variables' as v;
+@use '../utils/mixins';
+
+footer {
+    margin: 10px 20px;
+
+    @include mixins.tablet {
+        margin: 15px 40px;
+    }
+
+    @include mixins.tablet-xl {
+        margin: 20px 60px;
+    }
+
+    @include mixins.laptop {
+        margin: 20px 80px;
+    }
+
+    @include mixins.desktop {
+        margin: 20px 95px;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;          // centre horizontalement les enfants (logo + ul) en mobile
+        width: 100%;
+
+        @include mixins.tablet {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            img {
+                width: 50px;
+                height: auto;
+                object-fit: contain;
+                margin-bottom: 10px;
+
+                @include mixins.tablet {
+                    width: 60px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            margin: 0;                  // reset
+            padding: 0;                 // reset
+            width: 100%;   
+
+            @include mixins.tablet {
+                justify-content: flex-end;
+                gap: 15px;
+                flex-direction: row;
+            }
+
+            li {
+                font-size: 12px;
+            }
+        }
+    }
+}

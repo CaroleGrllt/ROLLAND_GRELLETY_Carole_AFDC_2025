@@ -1,0 +1,169 @@
+@use '../utils/variables' as v;
+@use '../utils/mixins';
+
+header {
+    margin: 10px 20px;
+
+    @include mixins.tablet {
+        margin: 15px 40px;
+    }
+
+    @include mixins.tablet-xl {
+        margin: 20px 60px;
+    }
+
+    @include mixins.laptop {
+        margin: 20px 80px;
+    }
+
+    @include mixins.desktop {
+        margin: 20px 95px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo-container {
+            img {
+                width: 60px;
+                height: auto;
+                object-fit: contain;
+
+                @include mixins.tablet {
+                    width: 70px;
+                }
+            }
+        }
+
+        ul {
+            display: none;
+
+            @include mixins.tablet {
+                display: flex;
+                gap: 20px;
+                color: v.$txt;
+                padding: 0;
+
+                a{
+                    display: inline-flex;
+                    align-items: center;
+                    color: v.$txt;
+
+                    &:hover {
+                        font-weight: 700;
+                    }
+
+                    svg {
+                        font-size: 20px;
+                        margin-left: 5px;
+                        color: v.$gold;
+
+                        @include mixins.tablet {
+                            font-size: 25px;
+                        }
+
+                        @include mixins.tablet-xl {
+                            font-size: 30px;
+                        }
+                    }
+                }            
+            }
+        }
+
+        button.nav-toggle {
+            display: inline-flex; 
+            font-size: 2rem;
+            line-height: 1;
+            color: v.$gold;
+
+            &:hover, &:focus-visible {
+                color: v.$hover;
+            }
+
+            @include mixins.tablet {
+                display: none;
+            }
+        }
+    }
+
+    button.backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .7);
+        border: 0;
+        padding: 0;
+        margin: 0;
+        z-index: 90;
+
+        @include mixins.tablet {
+            display: none;
+        }
+    }
+
+    aside {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 280px;
+        background-color: v.$lightpink;
+        border-left: 2px solid v.$goldborders;
+        box-shadow: -4px 0 16px rgba(0, 0, 0, .15);
+        transform: translateX(100%);
+        transition: transform .25s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+
+        &.open { 
+            transform: translateX(0); 
+            transition: transform .25s ease-in-out;
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .75rem 1rem;
+            border-bottom: 2px solid v.$goldborders;
+
+            button.drawer-close {
+                background: transparent;
+                border: 0;
+                font-size: 2rem;
+                line-height: 1; 
+                color: v.$gold;
+                
+                &:hover, &:focus-visible {
+                    color: v.$hover;
+                }
+            }
+        }
+
+        ul {
+            padding: .75rem 1rem 1rem;
+
+            a{
+                display: inline-flex;
+                align-items: center;
+                color: v.$txt;
+
+                &:hover {
+                    font-weight: 700;
+                }
+
+                svg {
+                    font-size: 20px;
+                    margin-left: 5px;
+                    color: v.$gold;
+                }
+            }
+        }
+
+        @include mixins.tablet {
+            display: none;        
+        }
+    }
+}
