@@ -1,0 +1,20 @@
+// BASE
+@use './base/fonts';
+@use './base/layout';
+@use './base/normalize';
+
+// COMPONENTS
+
+// LAYOUTS
+@use './layouts/header';
+@use './layouts/footer';
+
+// PAGES
+@use './pages/home';
+@use './pages/createAccount';
+@use './pages/login';
+@use './pages/dashboard';
+
+// UTILS
+@use './utils/variables';
+@use './utils/mixins';
