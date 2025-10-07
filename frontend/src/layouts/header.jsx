@@ -55,7 +55,7 @@ export default function Header() {
 
     return (
         <header className="header">
-            <nav aria-label="Navigation principale">
+            <nav aria-label="Navigation principale" className="nav-first">
                 <div className="logo-container">
                     <Link to='/' aria-label="Retour à l’accueil - Au Fil des Costumes">                    
                         <img
@@ -72,36 +72,35 @@ export default function Header() {
                     {isConnected ? (
                         <>
                             <li>
+                                <Link to='/dashboard' aria-label="Tableau de bord">
+                                    Bonjour, {firstName} ! <Icons aria-hidden='true' name="hello" className='smile-icon' />
+                                </Link>
+                            </li>
+                            <li>
                                 <button
                                     type="button"
                                     className="create-event-header-btn"
                                     aria-label="Créer un événement"
                                     onClick={openModalCreateEvent}
                                 >
-                                    Créer un événement
+                                    Créer un événement <Icons aria-hidden='true' name="add" className='add-icon' />
                                 </button>
                             </li>
                             <li>
-                                <Link to='/dashboard'>
-                                    {firstName}
-                                </Link>
-                            </li>
-                            <li>
                                 <button
-                                    ref={logoutBtnRef}
                                     type="button"
                                     className="logout"
                                     aria-label="Se déconnecter"
                                     onClick={handleLogout}
                                 >
-                                    <Icons name="logout" className='burger-menu' />
+                                    Se déconnecter <Icons aria-hidden='true' name="logout" className='burger-menu' />
                                 </button>
                             </li>
                         </>
                     ) : (
                         <li>
                             <Link to='/login'>
-                                Se connecter <Icons name="login" className='icon-link' />
+                                Se connecter <Icons aria-hidden='true' name="login" className='icon-link' />
                             </Link>
                         </li>
                     )}
@@ -151,8 +150,8 @@ export default function Header() {
                             {isConnected ? (
                                 <>
                                     <li>
-                                        <Link to='/dashboard'>
-                                            {firstName}
+                                        <Link to='/dashboard' aria-label="Tableau de bord">
+                                           Bonjour, {firstName} ! <Icons name="hello" className='smile-icon' />
                                         </Link>
                                     </li>
                                     <li>
@@ -162,7 +161,7 @@ export default function Header() {
                                             aria-label="Créer un événement"
                                             onClick={openModalCreateEvent}
                                         >
-                                            Créer un événement
+                                            Créer un événement <Icons name="add" className='add-icon' />
                                         </button>
                                     </li>
                                     <li>
@@ -172,7 +171,7 @@ export default function Header() {
                                             aria-label="Se déconnecter"
                                             onClick={handleLogout}
                                         >
-                                            <Icons name="logout" className='burger-menu' />
+                                          Se déconnecter <Icons name="logout" className='burger-menu' />
                                         </button>
                                     </li>
                                 </>

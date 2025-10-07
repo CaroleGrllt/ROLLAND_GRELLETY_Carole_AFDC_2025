@@ -1,6 +1,9 @@
+@use '../utils/variables' as v;
+@use '../utils/mixins';
+
+
 /* ========================================================================== */
 /* normalize.scss — base CSS reset + normalisation moderne                    */
-/* Inspiré des meilleures pratiques (HTML5, a11y, forms, media)               */
 /* ========================================================================== */
 
 /* 1) Box model universel */
@@ -136,7 +139,14 @@ select {
   outline-offset: 2px;
 }
 
-/* 15) Cacher les éléments purement décoratifs pour les lecteurs d’écran */
+/* 15) Colors */
+h1 {
+  color: v.$gold !important;
+}
+
+h2, h3, h4, h5, h6, span, p, li, a, button, input, select, textarea {
+  color: v.$txt !important;
+}
 
 /* 16) Texte long : coupure propre */
 :where(p, h1, h2, h3, h4, h5, h6, li, dd, figcaption) {
