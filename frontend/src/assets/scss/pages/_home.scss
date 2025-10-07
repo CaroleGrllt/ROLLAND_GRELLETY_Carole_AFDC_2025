@@ -1,0 +1,111 @@
+@use '../utils/variables' as v;
+@use '../utils/mixins';
+
+section.hero {
+    position: relative;
+
+    .banner-container {
+        position: relative;
+
+        img {
+            filter: brightness(0.7);
+        }
+
+        h1 {
+            position: absolute;
+            width: 100%;
+            font-size: 20px;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 1.5;
+        }
+    }
+
+    .search-container {
+        background-color: v.$lightpink;
+        padding: 20px 0 30px;
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            
+            .wrapper {
+                display: flex;
+                align-items: stretch;
+                background-color: v.$white;
+                border-radius: 20px;
+                box-shadow: inset 0 0px 10px rgba(0, 0, 0, 0.25);
+                overflow: hidden;
+
+                input {
+                    border: 0;
+                    padding: 10px 20px;
+                    min-width: 220px;
+                    outline: none;
+                    background-color: transparent;
+
+                    &::placeholder {
+                        font-size: 12px;
+                    }
+                }
+
+                .icons-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 0 10px;
+                    background-color: transparent;
+
+                    .close-icon {
+                        display: inline-flex; 
+                        align-items: center; 
+                        justify-content: center;
+                        border: 0; 
+                        background: none; 
+                        padding: 4px; 
+                        cursor: pointer;
+                        opacity: 0; 
+                        visibility: hidden; 
+                        transform: scale(.95);
+                        transition: opacity .15s ease, visibility .15s ease, transform .15s ease;
+
+                        &.is-visible {
+                            opacity: 1; 
+                            visibility: visible; 
+                            transform: scale(1);
+                        }
+
+                        svg {
+                            color: v.$gold;
+                            font-size: 20px;
+
+                            &:hover, 
+                            &:focus-visible { 
+                                color: v.$hover; 
+                            }
+                        }
+                    }
+
+                    .glass-icon {
+                        background-color: v.$gold;
+                        padding: 5px;
+                        border-radius: 50%;
+                        color: v.$white;
+                        font-size: 24px;
+
+                        &:hover,
+                        &:focus-visible {
+                            filter: brightness(0.95);
+                        }
+                    }
+                }
+            }
+        }
+
+        .filters-container {
+            margin-top: 30px;
+        }
+    }
+}

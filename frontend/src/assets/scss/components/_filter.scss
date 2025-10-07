@@ -1,0 +1,21 @@
+@use '../utils/variables' as v;
+@use '../utils/mixins';
+
+.filter-wrapper {
+    width: 298px;
+    margin: 0 auto;
+
+    .filter {
+        background-color: white;
+        border-radius: 40px;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .filter-dropdown {
+        max-height: 150px;
+        overflow: scroll;
+    }
+}
