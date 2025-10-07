@@ -6,16 +6,32 @@ import Banner4 from '../assets/img/banners/home-1050.webp'
 import Banner5 from '../assets/img/banners/home-1200.webp'
 import Icons from '../assets/img/icons/icon.jsx'
 import Filter from "../components/filter.jsx"
-
+import Tag from "../components/tag.jsx"
 
 export default function Home(){
     const [input, setInput] = useState("");
+    const [tags, setTags] = useState([])
     const inputRef = useRef(null);
 
     const clearInput = () => {
         setInput("");
         inputRef.current.focus();
     }
+
+    // appelé par <Filter/> à chaque sélection
+    const handleSelect = ({ type, value }) => {
+        setTags(prev => {
+        // si déjà présent, ne rien faire
+        if (prev.some(t => t.value === value)) return prev;
+        return [...prev, { type, value }];
+        });
+    };
+
+    const handleRemoveTag = (value) => {
+        setTags(prev => prev.filter(t => t.value !== value));
+    };
+
+  const selectedValues = tags.map(t => t.value);
 
     return (
         <>
@@ -71,10 +87,39 @@ export default function Home(){
                         </div>
                     </form>
                     <div className="filters-container">
-                        <Filter title="Epoque" data={["Antiquité", "Moyen Âge", "Renaissance", "XVIIe siècle", "XVIIIe siècle", "1er Empire", "2nd Empire", "Belle Epoque", "XXe siècle", "Contemporain"]} />
-                        <Filter title="Département" data={["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]} />
-                        <Filter title="Mois" data={["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]} />
-                        <Filter title="Tarif" data={["Gratuit", "Payant"]} />
+                        <Filter 
+                            title="Epoque" 
+                            data={["Antiquité", "Moyen Âge", "Renaissance", "XVIIe siècle", "XVIIIe siècle", "1er Empire", "2nd Empire", "Belle Epoque", "XXe siècle", "Contemporain"]} 
+                            onSelect={handleSelect}
+                            selectedValues={selectedValues}                        
+                        />
+                        <Filter 
+                            title="Département" 
+                            data={["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]} 
+                            onSelect={handleSelect}
+                            selectedValues={selectedValues}                        
+                        />
+                        <Filter 
+                            title="Mois" 
+                            data={["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]} 
+                            onSelect={handleSelect}
+                            selectedValues={selectedValues}                        
+                        />
+                        <Filter 
+                            title="Tarif" 
+                            data={["Gratuit", "Payant"]} 
+                            onSelect={handleSelect}
+                            selectedValues={selectedValues}                        
+                        />
+                    </div>
+                    <div className="tags-container">
+                         {/* TAGS SÉLECTIONNÉS */}
+                        {tags.length > 0 && (
+                            <Tag
+                                items={tags}
+                                onRemove={handleRemoveTag}
+                            />
+                        )}
                     </div>
                 </div>
             </section>

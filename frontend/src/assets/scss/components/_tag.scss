@@ -1,0 +1,8 @@
+/* exemple rapide, adapte à ton design system */
+.tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.tag { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .6rem; border: 1px solid #ddd; border-radius: 999px; }
+.tag-type { margin-right: .25rem; }
+.tag-remove { border: 0; background: transparent; cursor: pointer; }
+
+.filter-dropdown li.is-selected { opacity: .6; pointer-events: none; }
+.filter-dropdown li .selected-check { margin-left: .5rem; }
