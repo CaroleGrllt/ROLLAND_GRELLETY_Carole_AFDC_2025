@@ -24,6 +24,7 @@
         padding: 10px 20px;
         display: flex;
         justify-content: space-between;
+        min-width: 0;
 
         @include mixins.tablet {
             width: 100%;
@@ -36,6 +37,11 @@
         span {
             color: v.$white !important;
             font-weight: 500;
+            display: block;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         button {

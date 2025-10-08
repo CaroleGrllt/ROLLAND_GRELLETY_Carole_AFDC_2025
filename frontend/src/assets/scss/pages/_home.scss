@@ -6,18 +6,16 @@ section.hero {
 
     @include mixins.tablet-xl {
         margin: 0 60px;
-        --overlap: 120px;
-        padding-bottom: calc(var(--overlap) + 100px);
+        --overlap: 1px;
+        padding-bottom: calc(var(--overlap) + 10px);
     }
 
     @include mixins.laptop {
         margin: 0 80px;
-        --overlap: 100px;
     }
 
         @include mixins.desktop {
         margin: 0 95px;
-        --overlap: 110px;
     }
 
     .banner-visual {
@@ -81,7 +79,7 @@ section.hero {
             position: relative;        // << plus d'absolu
             z-index: 3;                // passe devant l'image et le titre si besoin
             width: 70%;
-            margin: calc(-1 * var(--overlap)) auto 0; // chevauche l'image vers le HAUT
+            margin: calc(-120 * var(--overlap)) auto 0; // chevauche l'image vers le HAUT
             border-radius: 40px;
             box-shadow: 0 0px 20px rgba(0,0,0,.25);
             overflow: visible;         // dropdowns peuvent déborder
@@ -90,6 +88,11 @@ section.hero {
 
         @include mixins.laptop {
             padding: 50px 30px;
+            margin: calc(-100 * var(--overlap)) auto 0; // chevauche l'image vers le HAUT
+        }
+
+        @include mixins.desktop {
+            margin: calc(-110 * var(--overlap)) auto 0; // chevauche l'image vers le HAUT
         }
 
         form {
@@ -157,6 +160,10 @@ section.hero {
                             color: v.$gold;
                             font-size: 20px;
 
+                            @include mixins.laptop {
+                                font-size: 24px;
+                            }
+
                             &:hover, 
                             &:focus-visible { 
                                 color: v.$hover; 
@@ -170,6 +177,10 @@ section.hero {
                         border-radius: 50%;
                         color: v.$white;
                         font-size: 24px;
+
+                        @include mixins.laptop {
+                            font-size: 30px;
+                        }
 
                         &:hover,
                         &:focus-visible {
@@ -207,6 +218,5 @@ section.hero {
                 margin-top: 50px;
             }
         }
-    }
-        
+    }      
 }
