@@ -6,18 +6,18 @@ export default function Tag({ items, onRemove }) {
     return (
         <div className="tags">
             {items.map(({ type, value }) => (
-                <span key={value} className="tag" aria-label={`${type}: ${value}`}>
-                {value}
-                <button
-                    type="button"
-                    className="tag-remove"
-                    aria-label={`Retirer ${value}`}
-                    onClick={() => onRemove(value)}
-                    title="Retirer le filtre"
-                >
-                    <Icons name="close" aria-hidden="true" />
-                </button>
-                </span>
+                <div key={value} className="tag" aria-label={`${type}: ${value}`}>
+                    <span>{value}</span>
+                    <button
+                        type="button"
+                        className="tag-remove"
+                        aria-label={`Retirer ${value}`}
+                        onClick={() => onRemove(value)}
+                        title="Retirer le filtre"
+                    >
+                        <Icons name="close" aria-hidden="true" />
+                    </button>
+                </div>
             ))}
         </div>
     );

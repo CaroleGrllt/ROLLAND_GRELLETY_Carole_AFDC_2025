@@ -4,27 +4,93 @@
 section.hero {
     position: relative;
 
-    .banner-container {
+    @include mixins.tablet-xl {
+        margin: 0 60px;
+        --overlap: 120px;
+        padding-bottom: calc(var(--overlap) + 100px);
+    }
+
+    @include mixins.laptop {
+        margin: 0 80px;
+        --overlap: 100px;
+    }
+
+        @include mixins.desktop {
+        margin: 0 95px;
+        --overlap: 110px;
+    }
+
+    .banner-visual {
         position: relative;
+        z-index: 1; // couche de base
 
         img {
             filter: brightness(0.7);
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+
+            @include mixins.tablet-xl {
+                border-radius: 40px;
+                box-shadow: 0 0px 20px rgba(0, 0, 0, 0.25);
+
+            }
         }
 
         h1 {
             position: absolute;
-            width: 100%;
-            font-size: 20px;
+            inset: 0;                 // top:0; right:0; bottom:0; left:0
+            margin: 0;
+            display: grid;
+            place-items: center;      // centre vertical + horizontal
             text-align: center;
-            top: 50%;
-            transform: translateY(-50%);
+            padding: 0 16px;          // un peu de respiration sur mobile
+            z-index: 2;               // au-dessus de l’image
+            transform: none;
+            font-size: 24px;
             line-height: 1.5;
+
+            @include mixins.tablet {
+                font-size: 36px;
+            }
+
+            @include mixins.tablet-xl {
+                font-size: 38px;
+            }
+
+            @include mixins.laptop {
+                font-size: 42px;
+            }
+
+            @include mixins.desktop {
+                font-size: 48px;
+            }
         }
     }
 
+
     .search-container {
         background-color: v.$lightpink;
-        padding: 20px 0 30px;
+        padding: 20px 20px 30px;
+
+        @include mixins.tablet {
+            padding: 30px 40px;
+        }
+
+        @include mixins.tablet-xl {
+            position: relative;        // << plus d'absolu
+            z-index: 3;                // passe devant l'image et le titre si besoin
+            width: 70%;
+            margin: calc(-1 * var(--overlap)) auto 0; // chevauche l'image vers le HAUT
+            border-radius: 40px;
+            box-shadow: 0 0px 20px rgba(0,0,0,.25);
+            overflow: visible;         // dropdowns peuvent déborder
+            padding: 30px 60px; 
+        }
+
+        @include mixins.laptop {
+            padding: 50px 30px;
+        }
 
         form {
             display: flex;
@@ -38,13 +104,23 @@ section.hero {
                 border-radius: 20px;
                 box-shadow: 0 0px 10px rgba(0, 0, 0, 0.25);
                 overflow: hidden;
+                width: 300px;
+                justify-content: space-between;
+
+                @include mixins.tablet {
+                    width: 100%;
+                }
 
                 input {
                     border: 0;
                     padding: 10px 20px;
-                    min-width: 220px;
                     outline: none;
                     background-color: transparent;
+                    width: 90%;
+
+                    @include mixins.laptop {
+                        padding: 15px 20px;
+                    }
 
                     &::placeholder {
                         font-size: 12px;
@@ -97,7 +173,7 @@ section.hero {
 
                         &:hover,
                         &:focus-visible {
-                            filter: brightness(0.95);
+                            filter: brightness(0.98);
                         }
                     }
                 }
@@ -108,7 +184,29 @@ section.hero {
             margin-top: 30px;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
+            gap: 10px;
+            align-items: stretch;   // les cellules ont la même hauteur
+            justify-items: stretch;
+            position: relative;  // crée une couche propre
+            z-index: 0; 
+            /* IMPORTANT : laisser les items rétrécir si besoin */
+            > * { min-width: 0; }
+
+            @include mixins.tablet {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 15px;
+                margin-top: 40px;
+            }
+
+            @include mixins.tablet-xl {
+                margin-top: 45px;
+            }
+
+            @include mixins.laptop {
+                grid-template-columns: repeat(4, minmax(0, 1fr)); // 4 colonnes égales
+                margin-top: 50px;
+            }
         }
     }
+        
 }

@@ -36,7 +36,7 @@ export default function Home(){
     return (
         <>
             <section className="hero">
-                <div className="banner-container">
+                <div className="banner-visual">
                     <img
                         src={Banner1}
                         srcSet={`
@@ -58,7 +58,7 @@ export default function Home(){
                         aria-hidden="true"
                         role="presentation"
                     />
-                    <h1>RECHERCHEZ VOTRE PROCHAIN ÉVÉNEMENT COSTUMÉ EN FRANCE !</h1>  
+                    <h1>RECHERCHEZ VOTRE PROCHAIN <br/>ÉVÉNEMENT COSTUMÉ EN FRANCE !</h1>  
                 </div>
                 <div className="search-container">
                     <form className="search-form">
@@ -113,7 +113,7 @@ export default function Home(){
                         />
                     </div>
                     <div className="tags-container">
-                         {/* TAGS SÉLECTIONNÉS */}
+                        {/* TAGS SÉLECTIONNÉS */}
                         {tags.length > 0 && (
                             <Tag
                                 items={tags}

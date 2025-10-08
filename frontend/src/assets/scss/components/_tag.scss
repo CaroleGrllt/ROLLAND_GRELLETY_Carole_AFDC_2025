@@ -1,8 +1,52 @@
-/* exemple rapide, adapte à ton design system */
-.tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
-.tag { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .6rem; border: 1px solid #ddd; border-radius: 999px; }
-.tag-type { margin-right: .25rem; }
-.tag-remove { border: 0; background: transparent; cursor: pointer; }
+@use '../utils/variables' as v;
+@use '../utils/mixins';
 
-.filter-dropdown li.is-selected { opacity: .6; pointer-events: none; }
-.filter-dropdown li .selected-check { margin-left: .5rem; }
+.tags {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 30px;
+
+    @include mixins.tablet {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    @include mixins.laptop {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .tag {
+        width: 300px;
+        margin: 0 auto;
+        border-radius: 40px;
+        background-color: v.$gold;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+
+        @include mixins.tablet {
+            width: 100%;
+        }
+
+        &:hover {
+            filter: brightness(0.95);
+        }
+
+        span {
+            color: v.$white !important;
+            font-weight: 500;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+
+            svg {
+                color: v.$white;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+}
