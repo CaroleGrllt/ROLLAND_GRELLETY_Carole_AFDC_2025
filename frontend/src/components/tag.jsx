@@ -4,10 +4,16 @@ export default function Tag({ items, onRemove }) {
     if (!items?.length) return null;
 
     return (
-        <div className="tags">
+        <div 
+            className="tags" 
+            role="list"
+            aria-label='Filtres sélectionnés'
+            aria-live="polite"
+            aria-relevant="additions removals"
+        >
             {items.map(({ type, value }) => (
-                <div key={value} className="tag" aria-label={`${type}: ${value}`}>
-                    <span>{value}</span>
+                <div key={value} className="tag" role="listitem" aria-labelledby={`tag-${type}-${value}`}>
+                    <span id={`tag-${type}-${value}`} title={`${type}: ${value}`}>{value}</span>
                     <button
                         type="button"
                         className="tag-remove"

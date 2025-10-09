@@ -4,10 +4,14 @@ import Icons from '../assets/img/icons/icon.jsx'
 export default function Filter({title, data, onSelect, selectedValues}){
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
+    const triggerRef = useRef(null);
     const listId = useId();
 
     const toggle = () => setOpen(v => !v);
-    const close = () => setOpen(false);
+    const close = () => {
+        setOpen(false)
+        requestAnimationFrame(() => triggerRef.current?.focus());
+    };
 
     // clic en dehors
     useEffect(() => {
@@ -36,13 +40,19 @@ export default function Filter({title, data, onSelect, selectedValues}){
         <div className="filter-wrapper" ref={wrapperRef}>
             <div 
                 className={`filter ${open ? "open" : ""}`}
+                ref={triggerRef}
                 role="button"
                 tabIndex={0}
                 aria-haspopup="listbox"
                 aria-expanded={open}
                 aria-controls={listId}
                 onClick={toggle}
-                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && toggle()}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ")  {
+                        e.preventDefault()
+                        toggle()
+                    }
+                }}
             >
                 <span>{title}</span>
                 <button
@@ -58,8 +68,11 @@ export default function Filter({title, data, onSelect, selectedValues}){
                 </button>
             </div>
             <div className={`filter-dropdown ${open ? "open" : ""}`}>
-                <div className="scroll" id={listId}>
-                    <ul role="listbox" aria-label={title}>
+                <div className="scroll">
+                    <p id={`${listId}-help`} className="sr-only">
+                        Tabulation pour parcourir les options, Entrée pour sélectionner, Échap pour fermer.
+                    </p>
+                    <ul role="listbox" id={listId} aria-label={title} aria-describedby={`${listId}-help`}>
                         {data.map((d) => {
                             const isSelected = selectedValues.includes(d);
                             return (
@@ -69,7 +82,8 @@ export default function Filter({title, data, onSelect, selectedValues}){
                                     data-type={title.toLowerCase()}
                                     role="option"
                                     aria-selected={isSelected}
-                                    tabIndex={0}
+                                    tabIndex={isSelected ? -1 : 0}
+                                    aria-disabled={isSelected || undefined}
                                     className={isSelected ? "is-selected" : ""}
                                     title={isSelected ? "Déjà sélectionné" : undefined}
                                     onClick={() => !isSelected && handleSelect(d)}

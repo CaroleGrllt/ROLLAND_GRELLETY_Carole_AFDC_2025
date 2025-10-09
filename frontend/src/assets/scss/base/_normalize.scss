@@ -133,6 +133,7 @@ select {
 /* 14) Focus visible accessible (laisse ton design appliquer la couleur) */
 :focus {
   outline: none; /* on s’appuie sur :focus-visible */
+  color: v.$hover;
 }
 :focus-visible {
   outline: 2px solid currentColor;
@@ -221,4 +222,13 @@ p {
 .img-contain {
   width: 100%; height: 100%;
   object-fit: contain;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.sr-only {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }

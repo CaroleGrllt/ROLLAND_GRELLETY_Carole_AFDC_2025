@@ -1,0 +1,30 @@
+@use '../../utils/variables' as v;
+@use '../../utils/mixins';
+
+.redirect-btn {
+    background-color: v.$gold;
+    padding: 10px 20px;
+    border-radius: 40px;
+    margin: 0 auto;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.25);
+    
+    @include mixins.tablet-xl {
+        padding: 10px 25px;
+    }
+    @include mixins.laptop {
+        padding: 10px 30px;
+    }
+
+    
+    span {
+        color: v.$white !important;
+        font-weight: 500;
+
+        @include mixins.tablet-xl {
+            font-size: 18px;
+        }
+        @include mixins.laptop {
+            font-size: 19px;
+        }
+    }
+}

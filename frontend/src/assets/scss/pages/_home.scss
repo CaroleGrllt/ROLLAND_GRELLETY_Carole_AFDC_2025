@@ -3,19 +3,24 @@
 
 section.hero {
     position: relative;
+    margin-bottom: 30px;
+
+    @include mixins.tablet {
+        margin-bottom: 50px;
+    }
 
     @include mixins.tablet-xl {
-        margin: 0 60px;
+        margin: 0 60px 50px;
         --overlap: 1px;
         padding-bottom: calc(var(--overlap) + 10px);
     }
 
     @include mixins.laptop {
-        margin: 0 80px;
+        margin: 0 80px 50px;
     }
 
         @include mixins.desktop {
-        margin: 0 95px;
+        margin: 0 95px 50px;
     }
 
     .banner-visual {
@@ -218,5 +223,83 @@ section.hero {
                 margin-top: 50px;
             }
         }
-    }      
+    }
+    
+    p{
+        text-align: center;
+        font-weight: 700;
+        margin-top: 20px;
+
+        @include mixins.tablet {
+            font-size: 18px;
+        }
+
+        @include mixins.laptop {
+            font-size: 20px;
+        }
+
+        @include mixins.desktop-xl {
+            font-size: 22px;
+        }
+    }
+}
+
+section.about {
+    display: flex;
+    flex-direction: column;
+    background-color: v.$lightgrey;
+    padding: 50px 20px;
+
+    @include mixins.tablet {
+        padding: 50px 40px;
+    }
+
+    @include mixins.tablet-xl {
+        padding: 50px 60px;
+    }
+
+    @include mixins.laptop {
+        padding: 50px 80px;
+    }
+
+    @include mixins.desktop {
+        padding: 50px 95px;
+    }
+
+
+    h2 {
+        margin-bottom: 35px;
+        text-align: center;
+
+        @include mixins.tablet {
+            font-size: 26px;
+            margin-bottom: 45px;
+        }
+
+        @include mixins.tablet-xl {
+            font-size: 28px;
+            margin-bottom: 45px;
+        }
+
+        @include mixins.laptop {
+            font-size: 30px;
+            margin-bottom: 50px;
+        }
+    }
+
+    p {
+        text-align: center;
+        margin-bottom: 40px;
+
+
+        @include mixins.tablet {
+            font-size: 18px;
+            margin-bottom: 45px;
+        }
+
+        @include mixins.desktop {
+            font-size: 19px;
+            margin-bottom: 50px;
+        }
+    }
 }

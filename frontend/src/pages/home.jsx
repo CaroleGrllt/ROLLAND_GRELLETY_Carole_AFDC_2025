@@ -1,17 +1,25 @@
 import { useRef, useState } from "react";
+
+// IMAGES
 import Banner1 from '../assets/img/banners/home-350.webp'
 import Banner2 from '../assets/img/banners/home-800.webp'
 import Banner3 from '../assets/img/banners/home-950.webp'
 import Banner4 from '../assets/img/banners/home-1050.webp'
 import Banner5 from '../assets/img/banners/home-1200.webp'
-import Icons from '../assets/img/icons/icon.jsx'
-import Filter from "../components/filter.jsx"
-import Tag from "../components/tag.jsx"
+
+// COMPOSANTS
+import Icons        from '../assets/img/icons/icon.jsx'
+import Filter       from "../components/filter.jsx"
+import Tag          from "../components/tag.jsx"
+import RedirectBtn  from "../components/buttons/redirectBtn.jsx"
 
 export default function Home(){
     const [input, setInput] = useState("");
-    const [tags, setTags] = useState([])
-    const inputRef = useRef(null);
+    const [tags, setTags]   = useState([])
+    const inputRef          = useRef(null);
+
+    const resultsCount      = "0"
+    const isConnected       = false
 
     const clearInput = () => {
         setInput("");
@@ -31,11 +39,11 @@ export default function Home(){
         setTags(prev => prev.filter(t => t.value !== value));
     };
 
-  const selectedValues = tags.map(t => t.value);
+    const selectedValues = tags.map(t => t.value);
 
     return (
         <>
-            <section className="hero">
+            <section className="hero" aria-labelledby="hero-section-title">
                 <div className="banner-visual">
                     <img
                         src={Banner1}
@@ -58,7 +66,7 @@ export default function Home(){
                         aria-hidden="true"
                         role="presentation"
                     />
-                    <h1>RECHERCHEZ VOTRE PROCHAIN <br/>ÉVÉNEMENT COSTUMÉ EN FRANCE !</h1>  
+                    <h1 id="hero-section-title">RECHERCHEZ VOTRE PROCHAIN <br/>ÉVÉNEMENT COSTUMÉ EN FRANCE !</h1>  
                 </div>
                 <div className="search-container">
                     <form className="search-form">
@@ -122,6 +130,21 @@ export default function Home(){
                         )}
                     </div>
                 </div>
+                <p role="status" aria-live="polite" aria-atomic="true">
+                    {resultsCount} {resultsCount > 1 ? 'événements' : 'événement'} à venir                
+                </p>
+            </section>
+            <section className="about" aria-labelledby="about-title">
+                <h2 id="about-title">Découvrez les événements costumés et historiques près de chez vous</h2>
+                <p>Plongez dans l’univers de la <strong>reconstitution historique</strong> et des <strong>événements costumés</strong> grâce à notre application dédiée aux passionnés d’histoire et de culture vivante.<br/><br/>
+                    Que vous soyez amateur de costumes médiévaux, de bals Renaissance ou de fêtes napoléoniennes, trouvez facilement les <strong>prochaines sorties en France</strong> grâce à un moteur de recherche intuitif et des filtres pratiques par époque, date, localisation géographique et tarif.<br/><br/>
+                    Créez un compte pour <strong>rejoindre la communauté</strong> et publier vos propres événements afin de faire vivre le patrimoine à travers les costumes et la reconstitution.
+                </p>
+                <RedirectBtn 
+                    label="Rejoindre l'aventure !"
+                    className='redirect-btn home-redirect-btn'
+                    path={isConnected ? "/dashboard" : "/login"}                 
+                />
             </section>
         </>
     )
