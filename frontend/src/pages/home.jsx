@@ -9,7 +9,7 @@ import Banner5 from '../assets/img/banners/home-1200.webp'
 
 // DATA
 import departements from '../data/departements.json'
-import events from '../data/event-localDev.json'
+import events       from '../data/event-localDev.json'
 
 // COMPOSANTS
 import Icons        from '../assets/img/icons/icon.jsx'
@@ -17,13 +17,20 @@ import Filter       from "../components/filter.jsx"
 import Tag          from "../components/tag.jsx"
 import RedirectBtn  from "../components/buttons/redirectBtn.jsx"
 import Card         from "../components/card.jsx"
+import ModalHome    from "../components/modalHome.jsx"
 
 export default function Home(){
-    const [input, setInput] = useState("");
-    const [tags, setTags]   = useState([])
+    const [input, setInput]             = useState("");
+    const [tags, setTags]               = useState([])
+    const [open, setOpen]               = useState(false);
+    const [selectedId, setSelectedId]   = useState(null);
+
     const inputRef          = useRef(null);
 
+    // FUTUR MVC
     const resultsCount      = "0"
+
+    // FUTUR REDUX
     const isConnected       = false
 
     const clearInput = () => {
@@ -31,20 +38,33 @@ export default function Home(){
         inputRef.current.focus();
     }
 
-    // appelé par <Filter/> à chaque sélection
+    // TAGS
     const handleSelect = ({ type, value }) => {
         setTags(prev => {
         // si déjà présent, ne rien faire
-        if (prev.some(t => t.value === value)) return prev;
-        return [...prev, { type, value }];
-        });
-    };
+        if (prev.some(t => t.value === value)) return prev
+        return [...prev, { type, value }]
+        })
+    }
 
     const handleRemoveTag = (value) => {
-        setTags(prev => prev.filter(t => t.value !== value));
-    };
+        setTags(prev => prev.filter(t => t.value !== value))
+    }
 
-    const selectedValues = tags.map(t => t.value);
+    const selectedValues = tags.map(t => t.value)
+
+    // MODALE EVENTS
+    const openEventById = (id) => {
+        setSelectedId(id)
+        setOpen(true)
+    }
+
+    const closeModal = () => {
+        setOpen(false)
+        setSelectedId(null)
+    }
+    
+    const selectedEvent = events.find((e) => e.id === selectedId) || null;
 
     return (
         <>
@@ -141,13 +161,9 @@ export default function Home(){
             </section>
             <section className="cards">
                 {events.map(ev => (
-                    <Card key={ev.title}
+                    <Card key={ev.id}
                         data={ev}
-                        onOpen={(eventData) => {
-                            // TODO: ouvrir ta modale ici
-                            console.log("ouvrir modale pour :", eventData.title);
-                            // setModal({ open: true, event: eventData });
-                        }}
+                        onOpen={openEventById}
                     />
                 ))}
             </section>
@@ -163,6 +179,7 @@ export default function Home(){
                     path={isConnected ? "/dashboard" : "/login"}                 
                 />
             </section>
+            <ModalHome open={open} onClose={closeModal} event={selectedEvent} />
         </>
     )
 }

@@ -1,7 +1,7 @@
-import Icons        from '../assets/img/icons/icon.jsx'
+import Icons from '../assets/img/icons/icon.jsx'
 
 export default function Card({data, onOpen}) {
-    const { image, title, date } = data
+    const { id, image, title, date } = data
 
     const images = import.meta.glob('../assets/img/cards/*', { eager: true, as: 'url' });
     const imgSrc = images[`../assets/img/cards/${image}`];
@@ -22,7 +22,7 @@ export default function Card({data, onOpen}) {
                 <button
                     type="button"
                     className="more"
-                    onClick={() => onOpen?.(data)}             // ← déclenche l’ouverture
+                    onClick={() => onOpen?.(id)}             // ← déclenche l’ouverture
                     aria-haspopup="dialog"                     // annonce qu’une modale s’ouvrira
                     aria-label={`En savoir plus sur ${title}`} // nom accessible complet
                 >
