@@ -1,0 +1,112 @@
+@use '../utils/variables' as v;
+@use '../utils/mixins';
+
+article {
+    position: relative;
+    --overlap: 1px;
+
+    .thumbnail {
+        position: relative;
+        box-shadow: 0 0px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 40px;
+
+        img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 40px;
+            filter: brightness(0.8);
+            box-shadow: 0 0px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .date-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: v.$gold;
+            padding: 5px;
+            border-radius: 40px;
+
+            span {
+                color: v.$white !important;
+                font-weight: 600;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: v.$lightpink;
+        box-shadow: 0 0px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 40px;
+        padding: 20px;
+        position: relative;        
+        z-index: 3;            
+        width: 80%;
+        margin: calc(-60 * var(--overlap)) auto 0; // chevauche l'image vers le HAUT
+        overflow: visible;
+
+        @include mixins.tablet {
+            width: 70%;
+        }
+
+        .title-container {
+            height: 44px;
+            display: flex;
+            align-items: center;
+            h3 {
+                font-size: 18px;
+            }
+        }
+
+        hr {
+            margin: 10px 0;
+            border-top: 2px solid v.$goldborders;
+            opacity: 0.8;
+        }
+
+        button {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color .35s cubic-bezier(.42, 0, .58, 1);
+            cursor: pointer;
+
+            &:hover, &:focus-within {
+                span:nth-child(2) {
+                    background-color: v.$hover;
+                    transform: rotate(45deg);
+
+                    svg {
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+
+            &:focus-visible {
+                outline: 2px solid v.$goldborders; 
+                outline-offset: 2px;
+            }
+
+
+            span:nth-child(2) {
+                background-color: v.$gold;
+                padding: 5px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                transform-origin: 50% 50%;
+                transition: transform .25s cubic-bezier(.2,.7,.2,1);
+
+                svg {
+                    color: v.$white;
+                    transition: transform .25s cubic-bezier(.2,.7,.2,1);
+                }
+            }
+        }
+    }
+}

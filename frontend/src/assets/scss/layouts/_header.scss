@@ -40,6 +40,7 @@ header {
 // DESKTOP MENU
         ul {
             display: none;
+            // margin-top: auto;
 
             @include mixins.tablet {
                 display: flex;
@@ -52,6 +53,11 @@ header {
 
                     &:hover {
                         font-weight: 700;
+                    }
+
+                    &:focus-visible {
+                        outline: 2px solid v.$goldborders; 
+                        outline-offset: 2px;
                     }
 
                     svg {

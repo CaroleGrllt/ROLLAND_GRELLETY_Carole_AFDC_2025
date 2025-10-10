@@ -7,11 +7,16 @@ import Banner3 from '../assets/img/banners/home-950.webp'
 import Banner4 from '../assets/img/banners/home-1050.webp'
 import Banner5 from '../assets/img/banners/home-1200.webp'
 
+// DATA
+import departements from '../data/departements.json'
+import events from '../data/event-localDev.json'
+
 // COMPOSANTS
 import Icons        from '../assets/img/icons/icon.jsx'
 import Filter       from "../components/filter.jsx"
 import Tag          from "../components/tag.jsx"
 import RedirectBtn  from "../components/buttons/redirectBtn.jsx"
+import Card         from "../components/card.jsx"
 
 export default function Home(){
     const [input, setInput] = useState("");
@@ -97,13 +102,13 @@ export default function Home(){
                     <div className="filters-container">
                         <Filter 
                             title="Epoque" 
-                            data={["Antiquité", "Moyen Âge", "Renaissance", "XVIIe siècle", "XVIIIe siècle", "1er Empire", "2nd Empire", "Belle Epoque", "XXe siècle", "Contemporain"]} 
+                            data={["Antiquité", "Moyen Âge", "Renaissance", "XVIIe siècle", "XVIIIe siècle", "1er Empire", "2nd Empire", "Belle Epoque", "XXe siècle", "Contemporain", "Multi-époques"]} 
                             onSelect={handleSelect}
                             selectedValues={selectedValues}                        
                         />
                         <Filter 
                             title="Département" 
-                            data={["Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine", "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"]} 
+                            data={departements.map(d => `${d.code} - ${d.name}`)} 
                             onSelect={handleSelect}
                             selectedValues={selectedValues}                        
                         />
@@ -133,6 +138,18 @@ export default function Home(){
                 <p role="status" aria-live="polite" aria-atomic="true">
                     {resultsCount} {resultsCount > 1 ? 'événements' : 'événement'} à venir                
                 </p>
+            </section>
+            <section className="cards">
+                {events.map(ev => (
+                    <Card key={ev.title}
+                        data={ev}
+                        onOpen={(eventData) => {
+                            // TODO: ouvrir ta modale ici
+                            console.log("ouvrir modale pour :", eventData.title);
+                            // setModal({ open: true, event: eventData });
+                        }}
+                    />
+                ))}
             </section>
             <section className="about" aria-labelledby="about-title">
                 <h2 id="about-title">Découvrez les événements costumés et historiques près de chez vous</h2>

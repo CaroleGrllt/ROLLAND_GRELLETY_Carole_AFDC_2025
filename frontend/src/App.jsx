@@ -45,9 +45,41 @@ export default function App() {
 		// {
 		// 	path: '/dashboard',
 		// 	element: (
-        //         <DefaultLayout>
+        //         <LoginLayout>
         //             <Dashboard />
-        //         </DefaultLayout>
+        //         </LoginLayout>
+        //     ),
+        // },
+		// {
+		// 	path: '/mentions-legales',
+		// 	element: (
+        //         <LoginLayout>
+        //             <Legal />
+        //         </LoginLayout>
+        //     ),
+        // },
+		// {
+		// 	path: '/cgu',
+		// 	element: (
+        //         <LoginLayout>
+        //             <CGU />
+        //         </LoginLayout>
+        //     ),
+        // },
+		// {
+		// 	path: '/donnees-personnelles',
+		// 	element: (
+        //         <LoginLayout>
+        //             <Data />
+        //         </LoginLayout>
+        //     ),
+        // },
+		// {
+		// 	path: '/contact',
+		// 	element: (
+        //         <LoginLayout>
+        //             <Contact />
+        //         </LoginLayout>
         //     ),
         // },
 		// {

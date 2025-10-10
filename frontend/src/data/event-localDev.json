@@ -1,0 +1,62 @@
+[
+    {
+        "image": "event.webp",
+        "title": "Le Jardin des Métamorphoses",
+        "date": "19 MAI 2025",
+        "departement": "78 - Yvelines",
+        "epoque": "XVIIIe siècle",
+        "tarif": "Payant",
+        "web": "www.siteweb.fr",
+        "description": "Lorem ipsum........."
+    },
+    {
+        "image": "event.webp",
+        "title": "La Journée des Costumés",
+        "date": "22 MAI 2025",
+        "departement": "77 - Seine et Marne",
+        "epoque": "XVIIe siècle",
+        "tarif": "Payant",
+        "web": "www.siteweb.fr",
+        "description": "Lorem ipsum........."
+    },
+    {
+        "image": "event.webp",
+        "title": "Les Grandes Eaux Nocturnes",
+        "date": "7 JUIN 2025",
+        "departement": "78 - Yvelines",
+        "epoque": "XVIIIe siècle",
+        "tarif": "Payant",
+        "web": "www.siteweb.fr",
+        "description": "Lorem ipsum........."
+    },
+    {
+        "image": "event.webp",
+        "title": "Les Historiques de Villarceaux",
+        "date": "22 JUIN 2025",
+        "departement": "95 - Val d'Oise",
+        "epoque": "Multi-époque",
+        "tarif": "Gratuit",
+        "web": "www.siteweb.fr",
+        "description": "Lorem ipsum........."
+    },
+    {
+        "image": "event.webp",
+        "title": "Bal de Noël à Napoléonville",
+        "date": "6 DEC. 2025",
+        "departement": "56 - Morbihan",
+        "epoque": "2nd Empire",
+        "tarif": "Payant",
+        "web": "www.siteweb.fr",
+        "description": "Lorem ipsum........."
+    },
+    {
+        "image": "event.webp",
+        "title": "Le Grand Noël de Vaux-le-Vicomte",
+        "date": "16 DEC. 2025",
+        "departement": "77 - Seine et Marne",
+        "epoque": "XVIIe siècle",
+        "tarif": "Payant",
+        "web": "www.siteweb.fr",
+        "description": "Lorem ipsum........."
+    }
+]

@@ -19,13 +19,18 @@ section.hero {
         margin: 0 80px 50px;
     }
 
-        @include mixins.desktop {
+    @include mixins.desktop {
         margin: 0 95px 50px;
     }
 
     .banner-visual {
         position: relative;
-        z-index: 1; // couche de base
+        z-index: 1;
+
+        @include mixins.tablet-xl {
+            box-shadow: 0 0px 20px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 40px;
+        }
 
         img {
             filter: brightness(0.7);
@@ -36,19 +41,18 @@ section.hero {
             @include mixins.tablet-xl {
                 border-radius: 40px;
                 box-shadow: 0 0px 20px rgba(0, 0, 0, 0.25);
-
             }
         }
 
         h1 {
             position: absolute;
-            inset: 0;                 // top:0; right:0; bottom:0; left:0
+            inset: 0;           
             margin: 0;
             display: grid;
-            place-items: center;      // centre vertical + horizontal
+            place-items: center;  
             text-align: center;
-            padding: 0 16px;          // un peu de respiration sur mobile
-            z-index: 2;               // au-dessus de l’image
+            padding: 0 16px;
+            z-index: 2;    
             transform: none;
             font-size: 24px;
             line-height: 1.5;
@@ -81,13 +85,13 @@ section.hero {
         }
 
         @include mixins.tablet-xl {
-            position: relative;        // << plus d'absolu
-            z-index: 3;                // passe devant l'image et le titre si besoin
+            position: relative;        
+            z-index: 3;            
             width: 70%;
             margin: calc(-120 * var(--overlap)) auto 0; // chevauche l'image vers le HAUT
             border-radius: 40px;
             box-shadow: 0 0px 20px rgba(0,0,0,.25);
-            overflow: visible;         // dropdowns peuvent déborder
+            overflow: visible;        
             padding: 30px 60px; 
         }
 
@@ -104,6 +108,7 @@ section.hero {
             display: flex;
             justify-content: center;
             align-items: stretch;
+
             
             .wrapper {
                 display: flex;
@@ -114,11 +119,11 @@ section.hero {
                 overflow: hidden;
                 width: 300px;
                 justify-content: space-between;
-
+                
                 @include mixins.tablet {
                     width: 100%;
                 }
-
+                
                 input {
                     border: 0;
                     padding: 10px 20px;
@@ -161,17 +166,24 @@ section.hero {
                             transform: scale(1);
                         }
 
+                        &:focus-visible {
+                            outline: 2px solid v.$goldborders; 
+                            outline-offset: 2px;
+                        }
+
                         svg {
                             color: v.$gold;
                             font-size: 20px;
-
+                            transition: background-color .25s cubic-bezier(.42, 0, .58, 1);
+                            
                             @include mixins.laptop {
                                 font-size: 24px;
                             }
 
                             &:hover, 
                             &:focus-visible { 
-                                color: v.$hover; 
+                                color: v.$hover;
+                                background-color: v.$hover;
                             }
                         }
                     }
@@ -242,6 +254,31 @@ section.hero {
             font-size: 22px;
         }
     }
+}
+
+section.cards {
+    margin: 0 20px 40px;
+    grid-template-columns: 1fr;
+    display: grid;
+    gap: 30px;
+
+    @include mixins.tablet {
+        margin: 0 40px 50px;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include mixins.tablet-xl {
+        margin: 0 60px 60px;
+    }
+
+    @include mixins.laptop {
+        margin: 0 80px 70px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include mixins.desktop {
+        margin: 0 95px 80px;
+    }  
 }
 
 section.about {
